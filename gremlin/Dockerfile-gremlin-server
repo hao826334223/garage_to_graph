@@ -1,0 +1,18 @@
+FROM openjdk:8-alpine
+
+RUN apk update && \
+	apk add wget unzip git bash curl ca-certificates dumb-init && \
+	update-ca-certificates
+
+RUN  wget -nv -O /tmp/gremlin-server.zip https://archive.apache.org/dist/tinkerpop/3.5.1/apache-tinkerpop-gremlin-server-3.5.1-bin.zip && \
+         unzip /tmp/gremlin-server.zip -d / && \
+         rm /tmp/gremlin-server.zip && \
+		 mv /apache-tinkerpop-gremlin-server-3.5.1 /gremlin-server
+
+WORKDIR /gremlin-server
+RUN rm conf/gremlin-server.yaml
+COPY gremlin/conf/ conf/
+RUN mkdir export
+
+ENTRYPOINT bin/gremlin-server.sh conf/gremlin-server.yaml
+EXPOSE 8182

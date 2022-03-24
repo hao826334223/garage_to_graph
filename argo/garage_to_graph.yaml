@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: garage-data-extractor-
+spec:
+  entrypoint: garage-data-extractor
+  templates:
+  - name: garage-data-extractor
+    dag:
+      tasks:
+      - name: get-garage-data
+        template: garage
+      - name: schema-data
+        template: schema
+        dependencies:
+          - get-garage-data
+
+
+  - name: garage
+    container:
+      image: "k3d-myregistry.localhost:5000/load:latest"
+      command: [sh, -c]
+      args: ["python main.py"]
+
+  - name: schema
+    container:
+      image: "k3d-myregistry.localhost:5000/schema:latest"
+      command: [sh, -c]
+      args: ["python main.py"]

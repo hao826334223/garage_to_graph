@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: market-data-extractor-
+spec:
+  entrypoint: market-data-extractor
+  templates:
+  - name: market-data-extractor
+    dag:
+      tasks:
+      - name: get-ib-data
+        template: ib
+      - name: graph-parquet
+        template: graph
+        dependencies:
+          - get-ib-data
+        arguments:
+          artifacts:
+            - name: in-artifact
+              from: "{{tasks.get-ib-data.outputs.artifacts.out-artifact}}"
+
+  - name: ib
+    container:
+      image: k3d-myregistry.localhost:5000/ib_etl_test:latest
+      command: [sh, -c]
+      args: ["python ib_etl.py"]
+    outputs:
+      artifacts:
+        - name: out-artifact
+          path: /app/outputs
+
+  - name: graph
+    inputs:
+      artifacts:
+       - name: in-artifact
+         path: /app/outputs
+    container:
+      image: k3d-myregistry.localhost:5000/graph:latest
+      command: [sh, -c]
+      args: ["python parquet_to_graph.py"]

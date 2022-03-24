@@ -1,0 +1,5 @@
+sqlalchemy
+pymysql
+gremlinpython
+loguru==0.5.3
+pandas
