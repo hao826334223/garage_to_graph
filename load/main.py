@@ -1,7 +1,7 @@
 import os
 import yaml
 import sys
-sys.path.insert(0, '..')
+# sys.path.insert(0, '..')
 
 # from utils.util import get_local_time, get_files_path, get_root_dir
 # from utils.log import logger
@@ -10,17 +10,17 @@ sys.path.insert(0, '..')
 # from mysql import mysql_instance, get_tables, get_table_references
 
 
-from utils.util import get_local_time, get_files_path, get_root_dir
-from utils.log import logger
-from utils.data_loader import TableDataSet, VertexDataSet
-from gremlin import gremlin_instance
-from mysql import mysql_instance, get_tables, get_table_references
+# from utils.util import get_local_time, get_files_path, get_root_dir
+# from utils.log import logger
+# from utils.data_loader import TableDataSet, VertexDataSet
+# from gremlin import gremlin_instance
+# from mysql import mysql_instance, get_tables, get_table_references
 
 # from load.utils.util import get_local_time, get_files_path, get_root_dir
-# from gremlin.gremlin import gremlin_instance
-# from load.utils.log import logger
-# from load.utils.data_loader import TableDataSet, VertexDataSet
-# from mysql.mysql import mysql_instance, get_tables, get_table_references
+from gremlin.gremlin import gremlin_instance
+from load.utils.log import logger
+from load.utils.data_loader import TableDataSet, VertexDataSet
+from mysql.mysql import mysql_instance, get_tables, get_table_references
 
 
 
