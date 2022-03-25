@@ -16,7 +16,7 @@ sys.path.insert(0, '..')
 # from gremlin import gremlin_instance
 # from mysql import mysql_instance, get_tables, get_table_references
 
-from load.utils.util import get_local_time, get_files_path, get_root_dir
+# from load.utils.util import get_local_time, get_files_path, get_root_dir
 from gremlin.gremlin import gremlin_instance
 from load.utils.log import logger
 from load.utils.data_loader import TableDataSet, VertexDataSet
