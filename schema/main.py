@@ -23,7 +23,8 @@ from gremlin_python.process.traversal import T
 
 import papermill as pm
 
-from utils.log import logger
+# from utils.log import logger
+from load.utils.log import logger
 # from utils.data_loader import TableDataSet, VertexDataSet
 # from gremlin import gremlin_instance
 
