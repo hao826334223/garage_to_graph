@@ -2,7 +2,7 @@ FROM python:3.8-slim-buster
 
 WORKDIR /app
 
-COPY ./load ./
+COPY ./load ./load
 COPY ./util/ ./util
 COPY ./gremlin/gremlin.py ./
 COPY ./mysql/mysql.py ./
