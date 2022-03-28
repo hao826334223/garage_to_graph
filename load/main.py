@@ -1,7 +1,7 @@
 import os
 import yaml
 import sys
-sys.path.insert(0, '..')
+# sys.path.insert(0, '..')
 
 # from utils.util import get_local_time, get_files_path, get_root_dir
 # from utils.log import logger
